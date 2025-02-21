@@ -10,7 +10,7 @@ import com.eazybytes.cards.dto.LoansDto;
 
 import jakarta.validation.constraints.Pattern;
 
-@FeignClient(value="TEAM1-LOAN-SERVICE", path="/api")
+@FeignClient(name="TEAM1-LOAN-SERVICE", path="/api")
 public interface LoanDetailsClient {
 
     @GetMapping("/fetch")

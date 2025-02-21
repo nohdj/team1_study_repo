@@ -188,3 +188,6 @@ public class CardsController {
     }
 
 }
+
+
+//curl -X GET "http://localhost:9000/api/fetchTotalLoan?mobileNumber=5526962601"
