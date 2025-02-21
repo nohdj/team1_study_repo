@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: team1-loan-deployment
+  namespace: group1-team1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: team1-loan-deployment
+  template:
+    metadata:
+      labels:
+        app: team1-loan-deployment
+    spec:
+      containers:
+        - name: team1-loan-deployment
+          image: k8s-vga-worker1:5000/group1-team1-loan-service:v1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: team1-loan-service
+  namespace: group1-team1
+spec:
+  selector:
+    app: team1-loan-deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8090
+      nodePort: 30142
+  type: NodePort
