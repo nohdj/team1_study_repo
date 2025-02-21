@@ -2,9 +2,11 @@ package com.eazybytes.cards.service.impl;
 
 import com.eazybytes.cards.constants.CardsConstants;
 import com.eazybytes.cards.dto.CardsDto;
+import com.eazybytes.cards.dto.LoansDto;
 import com.eazybytes.cards.entity.Cards;
 import com.eazybytes.cards.exception.CardAlreadyExistsException;
 import com.eazybytes.cards.exception.ResourceNotFoundException;
+import com.eazybytes.cards.feignClient.LoanDetailsClient;
 import com.eazybytes.cards.mapper.CardsMapper;
 import com.eazybytes.cards.repository.CardsRepository;
 import com.eazybytes.cards.service.ICardsService;
@@ -19,6 +21,7 @@ import java.util.Random;
 public class CardsServiceImpl implements ICardsService {
 
     private CardsRepository cardsRepository;
+    private LoanDetailsClient loanDetailsClient;
 
     /**
      * @param mobileNumber - Mobile Number of the Customer
@@ -86,6 +89,19 @@ public class CardsServiceImpl implements ICardsService {
         );
         cardsRepository.deleteById(cards.getCardId());
         return true;
+    }
+
+     /**
+     *
+     * @param mobileNumber - Input mobile Number
+     * @return Loans Details based on a given mobileNumber
+     */
+    @Override
+    public LoansDto fetchTotalLoan(String mobileNumber) {
+        LoansDto loan = loanDetailsClient.fetchLoanDetails(mobileNumber).orElseThrow(
+                () -> new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber)
+        );
+        return loan;
     }
 
 

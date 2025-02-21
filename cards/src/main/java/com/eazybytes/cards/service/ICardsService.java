@@ -1,6 +1,7 @@
 package com.eazybytes.cards.service;
 
 import com.eazybytes.cards.dto.CardsDto;
+import com.eazybytes.cards.dto.LoansDto;
 
 public interface ICardsService {
 
@@ -30,5 +31,12 @@ public interface ICardsService {
      * @return boolean indicating if the delete of card details is successful or not
      */
     boolean deleteCard(String mobileNumber);
+
+    /**
+     *
+     * @param mobileNumber - Input mobile Number
+     * @return Loan Details based on a given mobileNumber
+     */
+    LoansDto fetchTotalLoan(String mobileNumber);
 
 }

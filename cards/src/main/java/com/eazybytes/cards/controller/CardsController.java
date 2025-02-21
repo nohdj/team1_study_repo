@@ -3,6 +3,7 @@ package com.eazybytes.cards.controller;
 import com.eazybytes.cards.constants.CardsConstants;
 import com.eazybytes.cards.dto.CardsDto;
 import com.eazybytes.cards.dto.ErrorResponseDto;
+import com.eazybytes.cards.dto.LoansDto;
 import com.eazybytes.cards.dto.ResponseDto;
 import com.eazybytes.cards.service.ICardsService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -159,6 +160,14 @@ public class CardsController {
                     .status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseDto(CardsConstants.STATUS_417, CardsConstants.MESSAGE_417_DELETE));
         }
+    }
+
+    @GetMapping("/fetchTotalLoan")
+    public ResponseEntity<LoansDto> fetchTotalLoan(@RequestParam
+                                                   @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+                                                   String mobileNumber) {
+        LoansDto loans = iCardsService.fetchTotalLoan(mobileNumber);
+        return ResponseEntity.status(HttpStatus.OK).body(loans);
     }
 
 }
