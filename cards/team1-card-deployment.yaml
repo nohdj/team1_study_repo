@@ -1,36 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: group1-team1-spring-boot-jenkins
+  name: team1-card-deployment
   namespace: group1-team1
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: group1-team1-spring-boot-jenkins
+      app: team1-card-deployment
   template:
     metadata:
       labels:
-        app: group1-team1-spring-boot-jenkins
+        app: team1-card-deployment
     spec:
       containers:
-        - name: group1-team1-spring-boot-jenkins
-          image: k8s-vga-worker1:5000/group1-team1-spring-boot-jenkins:latest
+        - name: team1-card-deployment
+          image: k8s-vga-worker1:5000/group1-team1-card-service:v1.0.0
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 9000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: group1-team1-spring-boot-jenkins-svc
+  name: team1-card-service
   namespace: group1-team1
 spec:
   selector:
-    app: group1-team1-spring-boot-jenkins
+    app: team1-card-deployment
   ports:
     - protocol: TCP
       port: 8080
-      targetPort: 8080
-      nodePort: 30115
+      targetPort: 9000
+      nodePort: 30140
   type: NodePort
