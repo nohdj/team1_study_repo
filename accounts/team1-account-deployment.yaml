@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: team1-account-deployment
+  namespace: group1-team1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: team1-account-deployment
+  template:
+    metadata:
+      labels:
+        app: team1-account-deployment
+    spec:
+      containers:
+        - name: team1-account-deployment
+          image: k8s-vga-worker1:5000/group1-team1-account-service:v1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9010
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: team1-account-service
+  namespace: group1-team1
+spec:
+  selector:
+    app: team1-account-deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 9100
+      nodePort: 30141
+  type: NodePort
