@@ -28,6 +28,12 @@ eureka:
       defaultZone: http://team1-eureka-server-svc:8080/eureka/  # Eureka Server 주소
       #defaultZone: http://192.168.100.221:30130/eureka/  # Eureka Server 주소
 
+logging:
+  level:
+    org.springframework.cloud.openfeign: DEBUG
+    feign: DEBUG
+    com.eazybytes.cards.feignClient: DEBUG  # 👈 Feign Client 패키지 경로도 추가 가능
+
 
       
 
