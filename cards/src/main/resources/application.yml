@@ -28,5 +28,6 @@ eureka:
       defaultZone: http://team1-eureka-server-svc:8080/eureka/  # Eureka Server 주소
       #defaultZone: http://192.168.100.221:30130/eureka/  # Eureka Server 주소
 
+
       
 
