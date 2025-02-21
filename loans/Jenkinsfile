@@ -55,18 +55,19 @@ pipeline {
 		dir('loans') {
                     script {
                         // Kubernetes Deployment and Service 생성 및 적용 (1일차 교육때 사용한 deploy & service 생성 yaml 파일 등록하여 사용)
+                        sh "kubectl delete -f ./team1-loan-deployment.yaml -n ${NAMESPACE}"
                         sh "kubectl apply -f ./team1-loan-deployment.yaml -n ${NAMESPACE}"
 		    }
                 }
             }
         }
-        stage('Deployment Image to Update') {
-            steps {
-                script {
-                    // Kubenetes에서 특정 Deployment의 컨테이너 이미지를 업데이트 (아래 이름은 중복되지 않게 주의하여 지정, deployment, selector 이름으로)
-                    sh "kubectl set image deployment/team1-loan-deployment team1-loan-deployment=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
-                }
-            }
-        }
+        //stage('Deployment Image to Update') {
+        //    steps {
+        //        script {
+        //            // Kubenetes에서 특정 Deployment의 컨테이너 이미지를 업데이트 (아래 이름은 중복되지 않게 주의하여 지정, deployment, selector 이름으로)
+        //            sh "kubectl set image deployment/team1-loan-deployment team1-loan-deployment=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
+        //        }
+        //    }
+        //}
     }
 }
