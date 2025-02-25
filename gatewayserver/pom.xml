@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.eazybytes</groupId>
-	<artifactId>gatewayserver</artifactId>
+	<artifactId>team1-gateway-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gatewayserver</name>
+	<name>team1-gateway-server</name>
 	<description>Edge Server for Eazy Bank microservices</description>
 	<url/>
 	<licenses>

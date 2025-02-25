@@ -30,7 +30,7 @@ public class GatewayserverApplication {
                 .filters( f -> f.rewritePath("/mgbank/accounts/(?<segment>.*)","/${segment}")
                     .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
                     .circuitBreaker(config -> config.setName("accountsCircuitBreaker")
-                    // .setFallbackUri("forward:/contactSupport")
+                    .setFallbackUri("forward:/contactSupport")
                     )
                 )
                 .uri("lb://ACCOUNTS"))
