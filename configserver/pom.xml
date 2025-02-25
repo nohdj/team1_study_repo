@@ -11,8 +11,10 @@
     <groupId>com.eazybytes</groupId>
     <artifactId>team1-configserver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>team1-configserver</name>
     <description>Config Server for EazyBank microservices</description>
+
     <url/>
     <licenses>
         <license/>
