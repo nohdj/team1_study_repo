@@ -10,6 +10,7 @@ import com.eazybytes.cards.dto.LoansDto;
 
 import jakarta.validation.constraints.Pattern;
 
+//@FeignClient(name="TEAM1-LOAN-SERVICE", path="/api", url="http://192.168.100.221:30142")
 @FeignClient(name="TEAM1-LOAN-SERVICE", path="/api")
 public interface LoanDetailsClient {
 

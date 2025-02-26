@@ -191,3 +191,5 @@ public class CardsController {
 
 
 //curl -X GET "http://localhost:9000/api/fetchTotalLoan?mobileNumber=5526962601"
+//curl -X GET "http://localhost:9000/api/fetch?mobileNumber=5526962601"
+//curl -X GET "http://team1-card-service/api/fetch?mobileNumber=5526962601"
