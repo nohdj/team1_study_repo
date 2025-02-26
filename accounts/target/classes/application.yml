@@ -1,9 +1,9 @@
 server:
   port: 9010
-  
+
 spring:
   profiles:
-    active: "local"
+    active: "prod"
   application:
     name: team1-account-service  # 서비스 이름 (Eureka에 등록될 이름)
   datasource:
