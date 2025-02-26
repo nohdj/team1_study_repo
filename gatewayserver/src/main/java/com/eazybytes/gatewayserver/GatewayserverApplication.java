@@ -33,7 +33,7 @@ public class GatewayserverApplication {
                     .setFallbackUri("forward:/contactSupport")
                     )
                 )
-                .uri("lb://ACCOUNTS"))
+                .uri("lb://team1-account-service"))
             .route(p -> p
                 .path("/mgbank/loans/**")
                 .filters( f -> f.rewritePath("/mgbank/loans/(?<segment>.*)","/${segment}")
