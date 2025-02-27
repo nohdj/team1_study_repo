@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: team1-gatewayserver-deployment
-          image: k8s-vga-worker1:5000/group1-team1-gatewayserver-service:v1.0.1
+          image: k8s-vga-worker1:5000/group1-team1-gatewayserver-service:v1.0.2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9202

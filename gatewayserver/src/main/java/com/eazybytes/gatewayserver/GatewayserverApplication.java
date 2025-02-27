@@ -42,12 +42,12 @@ public class GatewayserverApplication {
                     	.setMethods(HttpMethod.GET)
                     	.setBackoff(Duration.ofMillis(100),Duration.ofMillis(1000),2,true))
                 )
-                .uri("lb://LOANS"))
+                .uri("lb://TEAM1-LOAN-SERVICE"))
             .route(p -> p
                 .path("/mgbank/cards/**")
                 .filters( f -> f.rewritePath("/mgbank/cards/(?<segment>.*)","/${segment}")
                     .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
                 )
-                .uri("lb://CARDS")).build();
+                .uri("lb://TEAM1-CARD-SERVICE")).build();
 	}
 }
