@@ -42,6 +42,10 @@ public class CardsController {
 
     private ICardsService iCardsService;
 
+    public CardsController(ICardsService iCardsService) {
+        this.iCardsService = iCardsService;
+    }
+
     @Value("${build.version}")
     private String buildVersion;
 
