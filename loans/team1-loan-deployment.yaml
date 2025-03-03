@@ -4,7 +4,7 @@ metadata:
   name: team1-loan-deployment
   namespace: group1-team1
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: team1-loan-deployment
