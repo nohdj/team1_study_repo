@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: "prod"
+    active: "local"
   application:
     name: team1-loan-service  # 서비스 이름 (Eureka에 등록될 이름)
   datasource:
