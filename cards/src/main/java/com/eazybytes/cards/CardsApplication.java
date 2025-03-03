@@ -7,14 +7,20 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import com.eazybytes.cards.dto.CardsContactInfoDto;
+
+
 
 @SpringBootApplication
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 @EnableDiscoveryClient // Eureka Client 활성화
 @EnableFeignClients
+@EnableConfigurationProperties(value = {CardsContactInfoDto.class})
 @OpenAPIDefinition(
 		info = @Info(
 				title = "Cards microservice REST API Documentation",

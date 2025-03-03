@@ -2,6 +2,8 @@ server:
   port: 9000
 
 spring:
+  profiles:
+    active: "prod"
   application:
     name: team1-card-service  # 서비스 이름 (Eureka에 등록될 이름)
   datasource:
@@ -18,21 +20,30 @@ spring:
       ddl-auto: update
     show-sql: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      access: unrestricted
+  info:
+    env:
+      enabled: true    
+
 eureka:
   instance:
     prefer-ip-address: true  # IP 기반 서비스 조회 (선택 사항)
   client:
     registerWithEureka: true  # Eureka Server에 서비스 등록
     fetchRegistry: true 
-    service-url: 
-      defaultZone: http://team1-eureka-server-svc:8080/eureka/  # Eureka Server 주소
-      #defaultZone: http://192.168.100.221:30130/eureka/  # Eureka Server 주소
 
-logging:
-  level:
-    org.springframework.cloud.openfeign: DEBUG
-    feign: DEBUG
-    com.eazybytes.cards.feignClient: DEBUG  # 👈 Feign Client 패키지 경로도 추가 가능
+info:
+  app:
+    name: "cards"
+    description: "Eazy Bank Cards Application"
+    version: "1.0.0"
 
 
       

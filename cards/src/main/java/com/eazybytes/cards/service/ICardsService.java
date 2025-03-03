@@ -39,4 +39,6 @@ public interface ICardsService {
      */
     LoansDto fetchTotalLoan(String mobileNumber);
 
+    String getLoanHostName();
+
 }

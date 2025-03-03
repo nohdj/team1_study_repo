@@ -7,6 +7,7 @@ import com.eazybytes.cards.entity.Cards;
 import com.eazybytes.cards.exception.CardAlreadyExistsException;
 import com.eazybytes.cards.exception.ResourceNotFoundException;
 import com.eazybytes.cards.feignClient.LoanDetailsClient;
+import com.eazybytes.cards.feignClient.LoanFeignClient;
 import com.eazybytes.cards.mapper.CardsMapper;
 import com.eazybytes.cards.repository.CardsRepository;
 import com.eazybytes.cards.service.ICardsService;
@@ -22,6 +23,7 @@ public class CardsServiceImpl implements ICardsService {
 
     private CardsRepository cardsRepository;
     private LoanDetailsClient loanDetailsClient;
+    private LoanFeignClient loanFeignClient;
 
     /**
      * @param mobileNumber - Mobile Number of the Customer
@@ -102,6 +104,11 @@ public class CardsServiceImpl implements ICardsService {
                 () -> new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber)
         );
         return loan;
+    }
+
+    @Override
+    public String getLoanHostName() {
+        return loanFeignClient.getLoanHostName().getBody();
     }
 
 
