@@ -1,6 +1,9 @@
 server:
   port: 8090
+
 spring:
+  profiles:
+    active: "prod"
   application:
     name: team1-loan-service  # 서비스 이름 (Eureka에 등록될 이름)
   datasource:
@@ -23,6 +26,10 @@ eureka:
   client:
     registerWithEureka: true  # Eureka Server에 서비스 등록
     fetchRegistry: true 
-    service-url: 
-      defaultZone: http://team1-eureka-server-svc:8080/eureka/  # Eureka Server 주소
-      #defaultZone: http://192.168.100.221:30130/eureka/  # Eureka Server 주card
+
+
+info:
+  app:
+    name: "cards"
+    description: "Eazy Bank Cards Application"
+    version: "1.0.0" 

@@ -7,9 +7,12 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import com.eazybytes.loans.dto.LoansContactInfoDto;
 
 @SpringBootApplication
 /*@ComponentScans({ @ComponentScan("com.eazybytes.loans.controller") })
@@ -18,6 +21,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableDiscoveryClient // Eureka Client 활성화
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 @EnableFeignClients
+@EnableConfigurationProperties(value = {LoansContactInfoDto.class})
 @OpenAPIDefinition(
 		info = @Info(
 				title = "Loans microservice REST API Documentation",
