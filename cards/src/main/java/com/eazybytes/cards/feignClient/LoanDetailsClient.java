@@ -3,6 +3,7 @@ package com.eazybytes.cards.feignClient;
 import java.util.Optional;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,5 +19,9 @@ public interface LoanDetailsClient {
     public Optional<LoansDto> fetchLoanDetails(@RequestParam
                                               @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
                                               String mobileNumber);
+
+    @GetMapping(value = "/getHostName", consumes = "application/json")
+    public ResponseEntity<String> getLoanHostName();
+                                          
 
 }
