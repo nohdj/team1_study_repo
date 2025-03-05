@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: "prod"
+    active: "local"
   application:
     name: "team1-gateway-server"
   cloud:
@@ -18,7 +18,6 @@ spring:
         connect-timeout: 1000
         ## default unlimited
         response-timeout: 2s
-
 management:
   endpoints:
     web:

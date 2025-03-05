@@ -109,5 +109,4 @@ public class CardsServiceImpl implements ICardsService {
         return loanDetailsClient.getLoanHostName().getBody();
     }
 
-
 }

@@ -26,6 +26,7 @@ import com.eazybytes.accounts.dto.AccountsContactInfoDto;
 import com.eazybytes.accounts.dto.CustomerDto;
 import com.eazybytes.accounts.dto.ErrorResponseDto;
 import com.eazybytes.accounts.dto.ResponseDto;
+import com.eazybytes.accounts.functions.KafkaProducerFunction;
 import com.eazybytes.accounts.service.IAccountsService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,15 +52,22 @@ import jakarta.validation.constraints.Pattern;
 public class AccountsController {
 
     private IAccountsService iAccountsService;
+    private final KafkaProducerFunction kafkaProducerFunction;
 
     private final Logger logger = LoggerFactory.getLogger(AccountsController.class);
 
-    public AccountsController(IAccountsService iAccountsService) {
+    public AccountsController(IAccountsService iAccountsService, KafkaProducerFunction kafkaProducerFunction) {
         this.iAccountsService = iAccountsService;
+        this.kafkaProducerFunction = kafkaProducerFunction;
     }
 
-    @Value("${build.version}")
-    private String buildVersion;
+//     public AccountController(AccountService accountService, KafkaProducerFunction kafkaProducerFunction) {
+//         this.accountService = accountService;
+//         this.kafkaProducerFunction = kafkaProducerFunction;
+//     }
+
+//     @Value("${build.version}")
+    private String buildVersion = "test";
 
     @Autowired
     private Environment environment;
@@ -116,6 +124,7 @@ public class AccountsController {
                                                                @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
                                                                String mobileNumber) {
         CustomerDto customerDto = iAccountsService.fetchAccount(mobileNumber);
+        kafkaProducerFunction.sendToKafka().apply(customerDto);                                                                 
         return ResponseEntity.status(HttpStatus.OK).body(customerDto);
     }
 
@@ -289,7 +298,4 @@ public class AccountsController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(hostName);
     }
-
-
-
 }

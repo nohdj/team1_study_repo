@@ -1,5 +1,6 @@
 package com.eazybytes.gatewayserver;
 
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -30,10 +31,10 @@ public class GatewayserverApplication {
                 .filters( f -> f.rewritePath("/mgbank/accounts/(?<segment>.*)","/${segment}")
                     .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
                     .circuitBreaker(config -> config.setName("accountsCircuitBreaker")
-                    .setFallbackUri("forward:/contactSupport")
+                    // .setFallbackUri("forward:/contactSupport")
                     )
                 )
-                .uri("lb://TEAM1-ACCOUNT-SERVICE"))
+                .uri("lb://ACCOUNTS"))
             .route(p -> p
                 .path("/mgbank/loans/**")
                 .filters( f -> f.rewritePath("/mgbank/loans/(?<segment>.*)","/${segment}")
@@ -42,12 +43,12 @@ public class GatewayserverApplication {
                     	.setMethods(HttpMethod.GET)
                     	.setBackoff(Duration.ofMillis(100),Duration.ofMillis(1000),2,true))
                 )
-                .uri("lb://TEAM1-LOAN-SERVICE"))
+                .uri("lb://LOANS"))
             .route(p -> p
                 .path("/mgbank/cards/**")
                 .filters( f -> f.rewritePath("/mgbank/cards/(?<segment>.*)","/${segment}")
                     .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
                 )
-                .uri("lb://TEAM1-CARD-SERVICE")).build();
+                .uri("lb://CARDS")).build();
 	}
 }
